@@ -38,9 +38,9 @@ function Page(props: Props) {
     }
 
     return (
-        <div className='flex flex-col gap-2 items-center justify-center h-full w-full'>
-            <div className='flex flex-col gap-3 items-center justify-center min-w-[400px]'>
-                <h1 className='text-3xl font-bold w-full'>Add Friend</h1>
+        <div className='flex flex-col gap-2 items-center justify-center h-full'>
+            <div className='flex flex-col gap-3 items-center justify-center md:min-w-[400px] min-w-[50%] p-2'>
+                <h1 className='lg:text-3xl md:text-2xl font-bold w-full'>Add Friend</h1>
                 <div className='w-full'>
                     <Label htmlFor="email">Email:</Label>
                     <Input type="email" id="email" autoComplete='off' onChange={e => setEmail(e.target.value)} />

@@ -7,6 +7,7 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { set } from 'mongoose';
+import { Loader2 } from 'lucide-react';
 
 interface Props { }
 
@@ -15,9 +16,11 @@ function Page() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [username, setUsername] = useState('');
+    const [loading, setLoading] = useState(false);
     const [error, setError] = useState('');
 
     const handleSignUp = async () => {
+        setLoading(true);
         try {
             const response = await axios.post('api/sign-up', {
                 email: email,
@@ -31,6 +34,8 @@ function Page() {
         } catch (error: any) {
             console.error(error);
             setError(error.response?.data?.error || 'Sign-up failed. Please try again.');
+        } finally {
+            setLoading(false);
         }
     };
 
@@ -101,7 +106,8 @@ function Page() {
                         >
                             Sign in
                         </Button>
-                        <Button onClick={handleSignUp}>Sign up</Button>
+                        <Button onClick={handleSignUp}>
+                            {loading? <Loader2 className='animate-spin'/>:"Sign up"}</Button>
                     </div>
                 </CardFooter>
             </Card>
